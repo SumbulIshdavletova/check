@@ -1,8 +1,9 @@
 package ru.sumbul.a5fragmentcontacts;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Contacts {
+public class Contacts implements Serializable {
 
     private int id;
 
@@ -35,38 +36,11 @@ public class Contacts {
         this.number = number;
     }
 
-//
-//    @Override
-//
-//    public boolean equals(Object o) {
-//
-//        if (this == o) return true;
-//
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Contacts Contacts = (Contacts) o;
-//
-//        return id == Contacts.id &&
-//
-//                Objects.equals(name, Contacts.name) &&
-//
-//                number == Contacts.number;
-//
-//    }
-//
-//
-//    @Override
-//
-//    public int hashCode() {
-//        return Objects.hash(id, name, number);
-//    }
-//
-//
-//    @Override
-//    public String toString() {
-//
-//        return "Contacts { id =" + id + "name =" + name + "number =" + number + "}";
-//
-//    }
+    public void editContact(int id, String name, int newNumber) {
+        Contacts c = new Contacts();
+        c.setId(id);
+        c.setName(name);
+        c.setNumber(newNumber);
+    }
 
 }

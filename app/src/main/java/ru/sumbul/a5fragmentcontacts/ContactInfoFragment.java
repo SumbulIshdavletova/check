@@ -24,22 +24,11 @@ import java.util.Set;
 
 public class ContactInfoFragment extends Fragment {
 
-//    private final Contacts[] contacts = new Contacts[]{
-//            new Contacts(0, "Lee Taeyong", 19950701),
-//            new Contacts(1, "Moon Taeil", 19960614),
-//            new Contacts(2, "Johnny Soh", 19950209),
-//    };
-//
-
-//    private final String[] contactNames = new String[]{"Lee Taeyong", "Moon Taeil", "Johnny Soh"};
-//    private final int[] contactNumbers = new int[]{19950701, 19940614, 19950209};
 
     EditText contactName;
     EditText number;
-    String num;
     Button save;
-    Integer result;
-
+    Contacts contact;
 
     public ContactInfoFragment() {
         super(R.layout.fragment_contact_info);
@@ -47,62 +36,56 @@ public class ContactInfoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_contact_info, container, false);
-
-        ContactViewModel model = new ViewModelProvider(this).get(ContactViewModel.class);
-        contactName = rootView.findViewById(R.id.name);
-        number = rootView.findViewById(R.id.number);
-        save = rootView.findViewById(R.id.save);
-
-//        getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
-//            @Override
-//            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-//                result = bundle.getInt("bundleKey");
-//                num = String.valueOf(getNumberByName(contacts[result].name));
-//                contactName.setText(contacts[result].name);
-//                number.setText(num);
-//            }
-//        });
+        View view = inflater.inflate(R.layout.fragment_contact_info, container, false);
 
 
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String nn = contactName.getText().toString();
-//                int nnum = Integer.parseInt(number.getText().toString());
-//
-//                model.editContact(result, nn, nnum);
-//                model.setContacts(result);
-//
-//                Bundle result1 = new Bundle();
-//                result1.putInt("bundleKey", result);
-//                getParentFragmentManager().setFragmentResult("requestKey", result1);
+        save = view.findViewById(R.id.save);
 
-//                getParentFragmentManager().beginTransaction()
-//                        .setReorderingAllowed(true)
-//                        .replace(R.id.fragment_container_view, ContactsListFragment.class, null)
-//                        .addToBackStack("info")
-//                        .commit();
-//
-//
-//          }
-//        });
-//
-    return rootView;
-  }
 
-//    public int getNumberByName(String name) {
-//        if (name.equals(contactNames[0])) {
-//
-//            return contactNumbers[0];
-//        }
-//        if (name.equals(contactNames[1])) {
-//            return contactNumbers[1];
-//        } else {
-//            return contactNumbers[2];
-//        }
-//    }
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Bundle bundle = getArguments();
+        assert bundle != null;
+        if (bundle.containsKey("contact")) {
+            contact = (Contacts) bundle.getSerializable("contact");
+            contactName = view.findViewById(R.id.name);
+            number = view.findViewById(R.id.number);
+
+            contactName.setText(contact.getName());
+            number.setText(String.valueOf(contact.getNumber()));
+
+
+        }
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Contacts contact2 = new Contacts();
+                contact2.setName(String.valueOf(contactName.getText()));
+                contact2.setId(contact.getId());
+                contact2.setNumber(Integer.parseInt(String.valueOf(number.getText())));
+
+                Bundle bundle2 = new Bundle();
+                bundle2.putSerializable("contact", contact2);
+                ContactsListFragment contactsListFragment = new ContactsListFragment();
+                contactsListFragment.setArguments(bundle2);
+                bundle2.putSerializable("requestKey", contact2);
+                getParentFragmentManager().setFragmentResult("requestKey", bundle2);
+                if (bundle != null) {
+                    getParentFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.framelayout_left, contactsListFragment)
+                            .addToBackStack("info")
+                            .commit();
+                }
+            }
+        });
+
+    }
 
 
 }
