@@ -2,4 +2,5 @@
 <resources>
     <string name="name">Name:</string>
     <string name="default_number">000000</string>
+    <string name="save">save</string>
 </resources>
