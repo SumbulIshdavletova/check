@@ -15,11 +15,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ContactsListFragment contactsListFragment = new ContactsListFragment();
+
+        setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
+
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_view, ContactsListFragment.class, null)
+                    .add(R.id.framelayout_left, contactsListFragment)
                     .addToBackStack("list")
                     .commit();
         }

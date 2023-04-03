@@ -2,20 +2,13 @@ package ru.sumbul.a5fragmentcontacts;
 
 import java.util.Objects;
 
-public final class Contacts {
+public class Contacts {
 
-    public int id;
+    private int id;
 
-    public String name;
+    private String name;
 
-    public int number;
-
-
-    public Contacts(int id, String name, int number) {
-        this.id = id;
-        this.name = name;
-        this.number = number;
-    }
+    private int number;
 
 
     public int getId() {
@@ -42,38 +35,38 @@ public final class Contacts {
         this.number = number;
     }
 
-
-    @Override
-
-    public boolean equals(Object o) {
-
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Contacts Contacts = (Contacts) o;
-
-        return id == Contacts.id &&
-
-                Objects.equals(name, Contacts.name) &&
-
-                number == Contacts.number;
-
-    }
-
-
-    @Override
-
-    public int hashCode() {
-        return Objects.hash(id, name, number);
-    }
-
-
-    @Override
-    public String toString() {
-
-        return "Contacts { id =" + id + "name =" + name + "number =" + number + "}";
-
-    }
+//
+//    @Override
+//
+//    public boolean equals(Object o) {
+//
+//        if (this == o) return true;
+//
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Contacts Contacts = (Contacts) o;
+//
+//        return id == Contacts.id &&
+//
+//                Objects.equals(name, Contacts.name) &&
+//
+//                number == Contacts.number;
+//
+//    }
+//
+//
+//    @Override
+//
+//    public int hashCode() {
+//        return Objects.hash(id, name, number);
+//    }
+//
+//
+//    @Override
+//    public String toString() {
+//
+//        return "Contacts { id =" + id + "name =" + name + "number =" + number + "}";
+//
+//    }
 
 }

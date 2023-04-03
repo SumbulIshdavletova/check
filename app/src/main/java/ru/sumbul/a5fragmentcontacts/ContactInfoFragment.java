@@ -24,15 +24,15 @@ import java.util.Set;
 
 public class ContactInfoFragment extends Fragment {
 
-    private final Contacts[] contacts = new Contacts[]{
-            new Contacts(0, "Lee Taeyong", 19950701),
-            new Contacts(1, "Moon Taeil", 19960614),
-            new Contacts(2, "Johnny Soh", 19950209),
-    };
+//    private final Contacts[] contacts = new Contacts[]{
+//            new Contacts(0, "Lee Taeyong", 19950701),
+//            new Contacts(1, "Moon Taeil", 19960614),
+//            new Contacts(2, "Johnny Soh", 19950209),
+//    };
+//
 
-
-    private final String[] contactNames = new String[]{"Lee Taeyong", "Moon Taeil", "Johnny Soh"};
-    private final int[] contactNumbers = new int[]{19950701, 19940614, 19950209};
+//    private final String[] contactNames = new String[]{"Lee Taeyong", "Moon Taeil", "Johnny Soh"};
+//    private final int[] contactNumbers = new int[]{19950701, 19940614, 19950209};
 
     EditText contactName;
     EditText number;
@@ -54,55 +54,55 @@ public class ContactInfoFragment extends Fragment {
         number = rootView.findViewById(R.id.number);
         save = rootView.findViewById(R.id.save);
 
-        getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                result = bundle.getInt("bundleKey");
-                num = String.valueOf(getNumberByName(contacts[result].name));
-                contactName.setText(contacts[result].name);
-                number.setText(num);
-            }
-        });
+//        getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
+//            @Override
+//            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+//                result = bundle.getInt("bundleKey");
+//                num = String.valueOf(getNumberByName(contacts[result].name));
+//                contactName.setText(contacts[result].name);
+//                number.setText(num);
+//            }
+//        });
 
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                String nn = contactName.getText().toString();
+//                int nnum = Integer.parseInt(number.getText().toString());
+//
+//                model.editContact(result, nn, nnum);
+//                model.setContacts(result);
+//
+//                Bundle result1 = new Bundle();
+//                result1.putInt("bundleKey", result);
+//                getParentFragmentManager().setFragmentResult("requestKey", result1);
 
-                String nn = contactName.getText().toString();
-                int nnum = Integer.parseInt(number.getText().toString());
+//                getParentFragmentManager().beginTransaction()
+//                        .setReorderingAllowed(true)
+//                        .replace(R.id.fragment_container_view, ContactsListFragment.class, null)
+//                        .addToBackStack("info")
+//                        .commit();
+//
+//
+//          }
+//        });
+//
+    return rootView;
+  }
 
-                model.editContact(result, nn, nnum);
-                model.setContacts(result);
-
-                Bundle result1 = new Bundle();
-                result1.putInt("bundleKey", result);
-                getParentFragmentManager().setFragmentResult("requestKey", result1);
-
-                getParentFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.fragment_container_view, ContactsListFragment.class, null)
-                        .addToBackStack("info")
-                        .commit();
-
-
-            }
-        });
-
-        return rootView;
-    }
-
-    public int getNumberByName(String name) {
-        if (name.equals(contactNames[0])) {
-
-            return contactNumbers[0];
-        }
-        if (name.equals(contactNames[1])) {
-            return contactNumbers[1];
-        } else {
-            return contactNumbers[2];
-        }
-    }
+//    public int getNumberByName(String name) {
+//        if (name.equals(contactNames[0])) {
+//
+//            return contactNumbers[0];
+//        }
+//        if (name.equals(contactNames[1])) {
+//            return contactNumbers[1];
+//        } else {
+//            return contactNumbers[2];
+//        }
+//    }
 
 
 }
