@@ -8,8 +8,40 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class ContactViewModel extends ViewModel {
+
+
+    public ArrayList<Contacts> generateContactsList() {
+        ArrayList<Contacts> contacts = new ArrayList<Contacts>(10);
+
+        Contacts ty = new Contacts();
+        ty.setId(0);
+        ty.setName("Lee");
+        ty.setNumber(19950701);
+        contacts.add(ty);
+
+        Contacts tl = new Contacts();
+        tl.setId(1);
+        tl.setName("Moon");
+        tl.setNumber(19960614);
+        contacts.add(tl);
+
+        Contacts jh = new Contacts();
+        jh.setId(2);
+        jh.setName("Johnny Soh");
+        jh.setNumber(19950209);
+        contacts.add(jh);
+
+        return contacts;
+    }
+
+
+//    public void setContactsList(List<Contacts> contactsList) {
+//        this.contacts.addAll(contactsList);
+//    }
+//
 
 //    private List<Contacts> contacts = new ArrayList<Contacts>(Arrays.asList(
 //            new Contacts(0, "Lee Taeyong", 19950701),
@@ -37,16 +69,5 @@ public class ContactViewModel extends ViewModel {
 //        contactsMutableLiveData.setValue(c);
 //    }
 
-
-//    public void rollDice() {
-//        Random random = new Random();
-//        uiState.setValue(
-//                new DiceUiState(
-//                        random.nextInt(7) + 1,
-//                        random.nextInt(7) + 1,
-//                        uiState.getValue().getNumberOfRolls() + 1
-//                )
-//        );
-//    }
 
 }
