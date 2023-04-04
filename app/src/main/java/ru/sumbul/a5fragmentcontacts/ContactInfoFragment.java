@@ -47,7 +47,7 @@ public class ContactInfoFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ContactViewModel viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
-        List<Contacts> contactsList = viewModel.generateContactsList();
+        List<Contacts> contactsList = viewModel.contactsList;
         Bundle bundle = getArguments();
         assert bundle != null;
         if (bundle.containsKey("contact")) {

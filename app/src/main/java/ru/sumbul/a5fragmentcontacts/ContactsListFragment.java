@@ -75,7 +75,11 @@ public class ContactsListFragment extends Fragment {
 
         ContactViewModel viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
         List<Contacts> updatedList = viewModel.generateContactsList();
-
+        //     viewModel.contacts.addAll(viewModel.generateContactsList());
+        ListView contactsListView = (ListView) view.findViewById(android.R.id.list);
+        ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), updatedList);
+        contactsListView.setAdapter(contactsAdapter);
+        contactsListView.setOnItemClickListener(onContactListViewItemClickListener);
 
         getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
             @Override
@@ -90,7 +94,7 @@ public class ContactsListFragment extends Fragment {
                 viewModel.generateContactsList().clear();
                 viewModel.generateContactsList().addAll(updatedList);
                 ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), updatedList);
-                contactsAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -102,13 +106,7 @@ public class ContactsListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ContactViewModel viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
-        //     viewModel.contacts.addAll(viewModel.generateContactsList());
-        ListView contactsListView = (ListView) view.findViewById(android.R.id.list);
-        ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), viewModel.generateContactsList());
-        contactsAdapter.notifyDataSetChanged();
-        contactsListView.setAdapter(contactsAdapter);
-        contactsListView.setOnItemClickListener(onContactListViewItemClickListener);
+
 
     }
 
