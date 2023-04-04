@@ -47,3 +47,4 @@ public class ContactsAdapter extends BaseAdapter {
         return view;
     }
 }
+

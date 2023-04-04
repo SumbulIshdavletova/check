@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
             Contacts contact2 = new Contacts();
             contact2.setName("Jeno");
-            contact2.setId(3);
             contact2.setNumber(20000423);
 
             Bundle bundle2 = new Bundle();
@@ -44,13 +43,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             if (findViewById(R.id.framelayout_right) != null) {
                 Contacts contact = new Contacts();
                 contact.setName("choose the contact");
-                contact.setId(3);
                 contact.setNumber(00000000);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("contact", contact);
-
-
                 ContactInfoFragment contactInfoFragment = new ContactInfoFragment();
 
                 contactInfoFragment.setArguments(bundle);
